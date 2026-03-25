@@ -27,7 +27,7 @@ duration = 600;
 temp_data = zeros(1,duration+1);
 time_data = zeros(1,duration+1);  
 current_time = 0;
-Tc = 0.01;
+Tc = 0.01,
 V0 = 0.5;
 
 for t =1:(duration+1)

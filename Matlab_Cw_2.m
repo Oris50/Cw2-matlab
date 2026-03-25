@@ -24,13 +24,13 @@ clear
 a = arduino( 'COM9', 'Uno'); %This should be used for every new taks for arduino connection
 
 duration = 600;
-temp_data = zeros(1,duration+1);
-time_data = zeros(1,duration+1);  
+temp_data = zeros(1,duration);
+time_data = zeros(1,duration);  
 current_time = 0;
-Tc = 0.01,
+Tc = 0.01;
 V0 = 0.5;
 
-for t =1:(duration+1)
+for t = 1:(duration)
 
     Voltage = readVoltage(a,"A0");
     %Temperature = (Voltage - zero drgee voltage)/temperature coefficient
@@ -56,16 +56,16 @@ grid on;
 
 % Table 1 format
 
-Startmessage = sprintf('Data loggin initiated - 23/03/2026\n');
+Startmessage = sprintf('Data logging initiated - 23/03/2026\n');
 disp(Startmessage)
 Location = sprintf('Location done - George green\n\n');
 disp(Location)
 
 
-for i = 0:(duration/60)
+for i = 1:(duration/60)
     % Calculate the index for the current minute
-    index = i * 60 + 1; 
-    fprintf(fileID, 'Minute %-8d %-7.2f\r\n', index, temp_data(index));
+    index = i * 60 ; 
+    fprintf('Second %-8d Temperature %-7.2f\r\n\n', index, temp_data(index));
 end
 Max = sprintf('Max temp - %.2f\n',max_Temp);
 disp(Max)
@@ -76,14 +76,15 @@ disp(Avg)
 
 
 % Write temperature data to a log file
-fileID = fopen('capsule_temperature.txt ','w');
+fileID = fopen('capsule_temperature.txt ', 'w');
 fprintf(fileID, '%s\n,',Startmessage);
-fprintf(fileID, '%s\n', Location);
-for i = 0:(duration/60)
-    index = i * 60 + 1;
-     fprintf(fileID, 'Minute %-8d %-17.2f\r\n', index, temp_data(index));
+fprintf(fileID, '%s\n',Location);
+for i = 1:(duration/60)
+    index = i * 60 ;
+     fprintf(fileID, 'Second %-8d %-17.2f\r\n', index, temp_data(index));
 end
 fprintf(fileID, '%s\n', Max);
 fprintf(fileID, '%s\n', Min);
 fprintf(fileID, '%s\n', Avg);
-fprintf(fileID, 'Data logging initiated');
+fprintf(fileID, 'Data logging terminated');
+fclose(fileID);

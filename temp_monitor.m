@@ -1,3 +1,10 @@
+%This function makes it so that the temperature of the surrounding are
+%monitored by reading voltage values which are then converted to
+%temperature valuesand depending on these temperature values the LED lights
+%will light up if the temperature has satisifed a certain condition. Then
+%the function plots a graph of tempeature and constantly updates it each
+%second which provides a live graph.
+
 function  temp_monitor(a)
 % Assign arduino digital pins for LEDS
 Green_LED = 'D11';

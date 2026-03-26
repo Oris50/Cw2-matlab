@@ -102,4 +102,14 @@ clear
 doc temp_monitor % Retrieves documentation from function
 
 
- 
+%% ALGORITHMS – TEMPERATURE PREDICTION [30 MARKS]
+
+clear
+
+
+ a = arduino('COM9','Uno');
+
+ temp_monitor(a);
+
+
+doc temp_monitor % Retrieves documentation from function

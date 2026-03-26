@@ -88,3 +88,18 @@ fprintf(fileID, '%s\n', Min);
 fprintf(fileID, '%s\n', Avg);
 fprintf(fileID, 'Data logging terminated');
 fclose(fileID);
+
+%% Task 2 - LED TEMPERATURE MONITORING DEVICE IMPLEMETATION
+
+clear
+
+
+ a = arduino('COM9','Uno');
+
+ temp_monitor(a);
+
+
+doc temp_monitor % Retrieves documentation from function
+
+
+ 
